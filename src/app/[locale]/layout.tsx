@@ -1,8 +1,5 @@
-import LandingNavBar from '@/components/LandingNavBar'
-import LocaleSwitcher from '@/components/LocaleSwitcher'
-import { jostMedium, jostRegular } from '@/lib/fonts'
-import { cn } from '@/lib/utils'
 import FooterPage from './footer'
+import LocaleSwitcher from './locale-switcher'
 
 export default function LandingLayout({
   children,
@@ -11,7 +8,7 @@ export default function LandingLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen w-full text-verde-oscuro">
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end p-4">
         <LocaleSwitcher />
       </div>
 
