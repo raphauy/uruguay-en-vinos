@@ -1,7 +1,8 @@
 "use client"
 
+import Logged from "@/components/header/logged";
 import { cn } from "@/lib/utils";
-import { BookA, LayoutDashboard, MessageCircle, Newspaper, Settings, Shapes, Tag, User } from "lucide-react";
+import { BookA, LayoutDashboard, MessageCircle, Newspaper, Settings, Shapes, Tag, User, Wine } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -36,6 +37,14 @@ const data= [
     href: "/admin/tags",
     icon: Tag,
     text: "Tags"
+  },
+  {
+    href: "divider", icon: User
+  },
+  {
+    href: "/admin/wines",
+    icon: Wine,
+    text: "Wines"
   },
   {
     href: "divider", icon: User

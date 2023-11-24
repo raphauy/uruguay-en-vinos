@@ -95,3 +95,17 @@ model Comment {
   postId      String
   post        Article     @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
+
+model Wine {
+  id            String    @id @default(cuid())
+  winery        String
+  wine          String
+  winemaker     String    @default("")
+  region        String
+  vintage       String
+  grapes        String
+  style         String    @default("")
+  notes         String    @db.Text @default("")
+  price         String    @default("")
+  image         String?   @default("/wine-placeholder.jpg")
+}

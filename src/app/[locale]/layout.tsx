@@ -1,20 +1,20 @@
+"use client"
+
+import { I18nProviderClient, useCurrentLocale } from '@/locales/client'
+import { SheetMenu } from './(menu)/menu-sheet'
 import FooterPage from './footer'
-import LocaleSwitcher from './locale-switcher'
 
-export default function LandingLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function LandingLayout({ children }: { children: React.ReactNode }) {
+
+  const locale= useCurrentLocale()
   return (
-    <div className="container flex flex-col min-h-screen w-full text-verde-oscuro">
-      <div className="flex w-full justify-end p-4">
-        <LocaleSwitcher />
-      </div>
+    <div className="flex flex-col w-full text-verde-oscuro">
+          <I18nProviderClient locale={locale}>
+            <SheetMenu />
+          </I18nProviderClient>
 
-      <main className="flex-grow">{children}</main>
-      
-      <FooterPage />
+        <main className="">{children}</main>
+        
     </div>
   )
 }

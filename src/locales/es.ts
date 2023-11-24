@@ -36,4 +36,10 @@ export default {
     form_required: "Campo requerido",
     form_thanks: "Te contactaremos a la brevedad",
   },
+  menu: {
+    home: "Inicio",
+    presale: "Preventa",
+    wines: "Vinos",
+    reports: "Informes",
+  }
 } as const

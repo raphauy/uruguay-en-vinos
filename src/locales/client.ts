@@ -4,5 +4,8 @@ export const {useI18n, useScopedI18n, useChangeLocale, I18nProviderClient, useCu
   {
     es: () => import('./es'),
     en: () => import('./en'),
+    pt: () => import('./pt'),
+    fr: () => import('./fr'),
+    gl: () => import('./gl'),
   }
 )

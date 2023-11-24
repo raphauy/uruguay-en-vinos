@@ -1,11 +1,9 @@
 "use client"
 
 import { signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 
+import { Clipboard, ExternalLink, LayoutDashboard, LockKeyhole, LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { LogOut, User } from "lucide-react";
 
 
 export default function PopOverUserHandler() {
@@ -22,15 +20,22 @@ export default function PopOverUserHandler() {
       
   return (
     <>
-      <nav className="flex flex-col gap-2 mt-1 text-sm text-gray-600 min-w-[230px]">
+      <nav className="flex flex-col mt-1 text-sm text-gray-600 min-w-[220px]">
         <ul>
-          <li className="flex items-center gap-2 p-1 mb-5 ml-1 border-b">            
+          <li className="flex items-center gap-2 px-2 pt-2 ml-1">
             <User /> {user.email} 
           </li>
-          <li className="flex items-center w-full mt-16 border-t rounded-md">
+
+          <div className="border-b mx-4 my-2" />
+
+          {user.role === 'admin' && <AdminMenu />}
+
+          <div className="border-b mx-4 mb-2 mt-16" />
+
+          <li className="w-full hover:bg-gray-200">
             <div onClick={onLogout} 
-              className="flex items-center flex-grow px-1 py-3 mt-2 rounded-md cursor-pointer hover:border hover:border-gray-500 hover:bg-gray-200">
-              <LogOut className="mr-2" />Logout
+              className="flex items-center flex-grow px-4 py-2 justify-between cursor-pointer">
+              <p>Logout</p> <LogOut size={20}/>
             </div>
           </li>
         </ul>
@@ -39,3 +44,20 @@ export default function PopOverUserHandler() {
   );
 }
 
+function AdminMenu() {
+  return (
+    <>
+      <li className="w-full hover:bg-gray-200">
+        <Link href="/admin" className="flex items-center flex-grow justify-between px-4 py-2 rounded-md cursor-pointer  ">
+          <p>Admin</p><LockKeyhole size={20}/>
+        </Link>
+      </li>
+      <li className="w-full hover:bg-gray-200">
+        <Link href="/" className="flex items-center flex-grow justify-between px-4 py-2 rounded-md cursor-pointer  ">
+          <p>Landing</p><Clipboard size={20}/>
+        </Link>
+      </li>
+      <div className="border-b mx-4 my-2" />
+    </>
+  );
+}
