@@ -20,24 +20,24 @@ const data= [
     icon: User,
     text: "Users"
   },
-  {
-    href: "divider", icon: User
-  },  
-  {
-    href: "/admin/articles",
-    icon: Newspaper,
-    text: "Articles"
-  },
-  {
-    href: "/admin/categorys",
-    icon: Shapes,
-    text: "Categories"
-  },
-  {
-    href: "/admin/tags",
-    icon: Tag,
-    text: "Tags"
-  },
+  // {
+  //   href: "divider", icon: User
+  // },  
+  // {
+  //   href: "/admin/articles",
+  //   icon: Newspaper,
+  //   text: "Articles"
+  // },
+  // {
+  //   href: "/admin/categorys",
+  //   icon: Shapes,
+  //   text: "Categories"
+  // },
+  // {
+  //   href: "/admin/tags",
+  //   icon: Tag,
+  //   text: "Tags"
+  // },
   {
     href: "divider", icon: User
   },
@@ -46,19 +46,19 @@ const data= [
     icon: Wine,
     text: "Wines"
   },
-  {
-    href: "divider", icon: User
-  },
-  {
-    href: "/admin/chat",
-    icon: MessageCircle,
-    text: "Chat"
-  },
-  {
-    href: "/admin/novel",
-    icon: BookA,
-    text: "Novel"
-  },
+  // {
+  //   href: "divider", icon: User
+  // },
+  // {
+  //   href: "/admin/chat",
+  //   icon: MessageCircle,
+  //   text: "Chat"
+  // },
+  // {
+  //   href: "/admin/novel",
+  //   icon: BookA,
+  //   text: "Novel"
+  // },
 ]
 
 
@@ -96,14 +96,14 @@ export default function SideBar() {
 
 
       </section>
-      <section className="mb-4">
+      {/* <section className="mb-4">
         {divider()}
         
         <Link href="/admin/config" className="flex gap-2 items-center py-1 mx-2 rounded hover:bg-gray-200 dark:hover:text-black">
           <Settings />
           <p className="hidden sm:block lg:w-36">Config</p>                  
         </Link>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { Wine, columns as userColumns } from '@/app/columns'
+import { Wine, columns as userColumns } from '@/app/[locale]/wines/columns'
 import { ColumnDef } from "@tanstack/react-table"
 import { Edit, Trash2 } from "lucide-react"
 import Link from "next/link"
