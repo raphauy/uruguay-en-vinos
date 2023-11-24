@@ -48,10 +48,14 @@ export default async function Home() {
             <p>{t("discover_text")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("discover_button")}</Button>
+          <Link href="/wines">
+            <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("discover_button")}</Button>
+          </Link>
 
         </div>
-        <Image src="/descubrir.png" width={662} height={300} alt={t("discover_title")} />
+        <Link href="/wines">
+          <Image src="/descubrir.png" width={662} height={300} alt={t("discover_title")} />
+        </Link>
       </div>
 
       {/** Reports */}

@@ -9,7 +9,7 @@ export default async function IndexPage() {
   const vintages= await getVintages()
 
   return (
-    <div className="flex flex-col items-center w-full text-lg bg-green-100">
+    <div className="flex flex-col items-center w-full text-lg">
       <h1 className="my-5 text-4xl font-extrabold leading-tight tracking-tighter text-center md:text-4xl">
         Wines
       </h1>
