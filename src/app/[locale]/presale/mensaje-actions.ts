@@ -1,5 +1,6 @@
 "use server"
 
+import { sendMailToGabi } from "@/services/mail-service"
 import { MensajeFormValues } from "./mensaje-forms"
 
 
@@ -8,7 +9,7 @@ export async function processMessageAction(data: MensajeFormValues): Promise<boo
   // todo: validate data
 
   console.log("processMessageAction", data)
-  const basePath = process.env.NEXTAUTH_URL || ""
+  const basePath = process.env.CRM_HOST || ""
   const libroPreventaServiceId= process.env.LIBRO_PREVENTA_SERVICE_ID || ""
   const url= `${basePath}/api/crm/${libroPreventaServiceId}/add`
   console.log("processMessageAction url", url)
@@ -29,7 +30,14 @@ export async function processMessageAction(data: MensajeFormValues): Promise<boo
   })
   .then(response => {
     console.log("Reservation ok")
-    return true
+    sendMailToGabi(data.name || "", data.email, data.content || "")
+    .then(() => {
+      console.log("Email sent")
+      return true
+    })
+    .catch(error => {
+      console.log("sendMailToGabi error", error)
+    })
   })
   .catch(error => {
     console.log("processMessageAction error", error)
