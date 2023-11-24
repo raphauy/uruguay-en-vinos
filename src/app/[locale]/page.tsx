@@ -3,6 +3,7 @@ import { getScopedI18n } from "@/locales/server"
 import { cn } from "@/lib/utils"
 import { jostMedium, fontSpaceMono } from "@/lib/fonts"
 import Image from "next/image"
+import Link from "next/link"
 
 export default async function Home() {
   const t = await getScopedI18n("landing")
@@ -33,8 +34,9 @@ export default async function Home() {
             <p>{t("book_actual")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("button_lo_quiero")}</Button>
-
+          <Link href="/presale">
+            <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("button_lo_quiero")}</Button>
+          </Link>
         </div>
       </div>
 

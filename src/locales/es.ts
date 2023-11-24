@@ -23,14 +23,17 @@ export default {
     suscribe_button: "Suscribite",
     footer_copyrigth: "© 2024 Uruguay en vinos Desarrollado por Tinta",
   },
-  main: {
-    home: "Inicio",
-    about: "Acerca de",
-    title: "Internacionalización",
-    desc: "Next.js te permite configurar la navegación y el renderizado de contenido para admitir varios idiomas. Hacer que tu sitio sea adaptable a diferentes regiones incluye contenido traducido (localización) y rutas internacionalizadas.",
-  },
-  about: {
-    title: "Esta es la página acerca de",
-    desc: "La página acerca de está aquí",
+  presale: {
+    title: "Preventa del libro",
+    description: "El libro Uruguay en vinos se encuentra en etapa de preventa. Si querés reservar tu ejemplar, dejanos tu contacto y nos comunicaremos con vos.",
+    form_name: "Nombre",
+    form_email: "Email",
+    form_message: "Mensaje",
+    form_message_placeholder: "Dejanos tu mensaje",
+    form_button: "Enviar",
+    form_success: "¡Reserva Exitosa!",
+    form_error: "Ocurrió un error al enviar el mensaje",
+    form_required: "Campo requerido",
+    form_thanks: "Te contactaremos a la brevedad",
   },
 } as const

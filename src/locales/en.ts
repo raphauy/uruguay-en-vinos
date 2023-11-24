@@ -23,14 +23,17 @@ export default {
     suscribe_button: "Subscribe",
     footer_copyrigth: "© 2024 Uruguay in wines Developed by Tinta",
   },
-  main: {
-    home: "Home",
-    about: "About",
-    title: "Internationalization",
-    desc: "Uruguay in wines is an independent communication project, created by Gabi Zimmer, which aims to disseminate knowledge about Uruguayan viticulture through content and virtual and in-person training experiences.",
-  },
-  about: {
-    title: "This is about page",
-    desc: "About page is here",
+  presale: {
+    title: "Book pre-sale",
+    description: "The book Uruguay in wines is in the pre-sale stage. If you want to reserve your copy, leave us your contact information and we will get in touch with you.",
+    form_name: "Name",
+    form_email: "Email",
+    form_message: "Message",
+    form_message_placeholder: "Leave us your message",
+    form_button: "Send",
+    form_success: "Successful reservation!",
+    form_error: "An error occurred while sending the message",
+    form_required: "Required field",
+    form_thanks: "We will contact you soon",
   },
 } as const

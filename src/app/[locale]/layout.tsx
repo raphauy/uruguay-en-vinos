@@ -7,7 +7,7 @@ export default function LandingLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex flex-col min-h-screen w-full text-verde-oscuro">
+    <div className="container flex flex-col min-h-screen w-full text-verde-oscuro">
       <div className="flex w-full justify-end p-4">
         <LocaleSwitcher />
       </div>
