@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpDown, Pencil, PlusCircle, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, ArrowUpDown, Pencil, PlusCircle, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -80,10 +80,14 @@ export function PublishUnpublishDialog({id, publish, title }: PublishUnpublishPr
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          {publish ? "Publish" : "Unpublish"}
-          <ArrowUpDown className="w-4 h-4 ml-1" />
-        </Button>
+        {publish ?
+          <Button >
+            Publish <ArrowUp className="w-4 h-4" />
+          </Button> :
+          <Button variant="outline">
+            UnPublish <ArrowDown className="w-4 h-4" />
+          </Button>
+        }
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
