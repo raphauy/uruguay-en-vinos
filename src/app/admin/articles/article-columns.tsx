@@ -6,8 +6,27 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Eye } from "lucide-react";
 import { DeleteArticleDialog, ArticleDialog } from "./article-dialogs";
 import Link from "next/link";
+import Image from "next/image";
 
 export const columns: ColumnDef<ArticleDAO>[] = [
+  {
+    accessorKey: "image",
+    header: ({ column }) => {
+      return null
+    },
+    cell: ({ row }) => {
+      const data = row.original     
+
+      if (!data.image) return null
+
+
+      return (
+        <Link href={`/admin/articles/${data.id}`}>
+          <Image src={data.image} width={150} height={150} className="w-80 rounded-md" alt={data.title} />
+        </Link>
+      )
+    },
+  },
   {
     accessorKey: "title",
     header: ({ column }) => {
@@ -26,15 +45,15 @@ export const columns: ColumnDef<ArticleDAO>[] = [
       const data = row.original;
 
       return (
-        <Link href={`/admin/articles/${data.id}`}>
+        <Link href={`/admin/articles/${data.id}`} className="">
           <Button variant="ghost" className="px-0">{data.title}</Button>
         </Link>
-  );
+    );
     },
   },
 
   {
-    accessorKey: "description",
+    accessorKey: "summary",
     header: ({ column }) => {
       return (
         <Button
@@ -46,6 +65,17 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           <ArrowUpDown className="w-4 h-4 ml-1" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const data = row.original;
+
+      return (
+        <div className="flex flex-col justify-between gap-10">
+          <p>{data.summary}</p>
+
+          <p className="self-center">{data.status}</p>
+      </div>
+    );
     },
   },
 
@@ -59,22 +89,6 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Slug
-          <ArrowUpDown className="w-4 h-4 ml-1" />
-        </Button>
-      );
-    },
-  },
-
-  {
-    accessorKey: "content",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="pl-0 dark:text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Content
           <ArrowUpDown className="w-4 h-4 ml-1" />
         </Button>
       );
@@ -98,7 +112,7 @@ export const columns: ColumnDef<ArticleDAO>[] = [
   },
 
   {
-    accessorKey: "publishedAt",
+    accessorKey: "categories",
     header: ({ column }) => {
       return (
         <Button
@@ -106,11 +120,26 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           className="pl-0 dark:text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          PublishedAt
+          Categories
           <ArrowUpDown className="w-4 h-4 ml-1" />
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const data = row.original;
+
+      return (
+        <div>
+          {
+              data.categories?.map((category) => (
+                  <div key={category} className="bg-naranja text-verde-oscuro w-fit px-4 rounded-full font-bold">
+                      {category}
+                  </div>
+              ))
+          }
+        </div>
+);
+    }
   },
 
   {

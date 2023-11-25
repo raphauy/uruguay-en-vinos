@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { Editor, JSONContent } from '@tiptap/core';
-import { Loader } from "lucide-react";
+import { Eye, Loader, Save } from "lucide-react";
 import { Editor as NovelEditor } from "novel";
 import { useState } from "react";
 import { updateContentAction } from "../article-actions";
@@ -41,18 +41,18 @@ export default function NovelOnClient({ articleId, initialContent }: Props) {
     }
 
     return (
-        <main className="flex h-full min-w-[1000px] flex-col items-center gap-4 justify-between sm:p-4 xl:p-8">
-            <div className="flex justify-end w-full">
-                <Button variant="default" className="w-32 ml-2" onClick={save}>
+        <div className="relative flex h-full xl:min-w-[1000px] flex-col items-center gap-4 justify-between ">
+            <div className="flex flex-col gap-1 fixed bottom-20 right-10 z-20">
+                <Button onClick={save} className="p-2">
                 {loading ? (
                     <Loader className="h-4 w-4 animate-spin" />
                 ) : (
-                    <p>Save</p>
+                    <Save />
                 )}
                 </Button>
                 <Link href={`/admin/articles/${articleId}/preview`} target="_blank">
-                    <Button variant="default" className="w-32 ml-2">                    
-                        <p>Preview</p>
+                    <Button className="p-2">
+                        <Eye />
                     </Button>
                 </Link>
 
@@ -62,7 +62,7 @@ export default function NovelOnClient({ articleId, initialContent }: Props) {
                 onUpdate={onUpdate}      
                 disableLocalStorage
             />
-        </main>
+        </div>
     )
 }
 

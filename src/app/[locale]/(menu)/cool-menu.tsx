@@ -17,8 +17,6 @@ export function CoolMenu({ toggle }: Props) {
   const t= useScopedI18n('menu')
   const changeLocale = useChangeLocale()
 
-  const { setTheme, theme } = useTheme()
-
   function changeLanguage(lang: "es" | "en" | "pt") {   
     changeLocale(lang)
   }
@@ -66,16 +64,16 @@ export function CoolMenu({ toggle }: Props) {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center flex-1 pb-52 gap-10">
-        <Link className="text-lg font-bold" href={`/${currentLanguage}`} onClick={toggle}>
+        <Link className="text-lg font-bold" href={`/`} onClick={toggle}>
           {t('home')}
         </Link>
-        <Link className="text-lg font-bold" href={`/${currentLanguage}/presale`} onClick={toggle}>
+        <Link className="text-lg font-bold" href={`/presale`} onClick={toggle}>
           {t('presale')}
         </Link>
-        <Link className="text-lg font-bold" href={`/${currentLanguage}/wines`} onClick={toggle}>
+        <Link className="text-lg font-bold" href={`/wines`} onClick={toggle}>
           {t('wines')}
         </Link>
-        <Link className="text-lg font-bold" href="#">
+        <Link className="text-lg font-bold" href="/reports" onClick={toggle}>
           {t('reports')}
         </Link>
       </div>

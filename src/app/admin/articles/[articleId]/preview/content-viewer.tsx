@@ -13,10 +13,6 @@ export default function ContentViewer({ content }: Props) {
         extensions: [
           StarterKit,
         ],
-        // content: {
-        //     type: 'doc',
-        //     content: JSON.parse(content),
-        // },        
         content: content,
         editable: false,
       })
@@ -26,7 +22,7 @@ export default function ContentViewer({ content }: Props) {
     }
 
     return (
-        <div className="flex h-full min-w-[1000px] border rounded-lg flex-col items-center gap-4 justify-between sm:p-4 xl:p-8">
+        <div className="flex h-full border rounded-lg justify-center p-1 md:p-4 xl:p-8">
             <NovelEditor
                 className="h-full w-full"
                 defaultValue={JSON.parse(content)}

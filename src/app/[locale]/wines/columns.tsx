@@ -21,15 +21,9 @@ export type Wine = {
 
 export const columns: ColumnDef<Wine>[] = [
   {
-    accessorKey: "wine",
+    accessorKey: "image",
     header: ({ column }) => {
-      return (
-        <Button variant="ghost" className="pl-0 dark:text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          Wine
-          <ArrowUpDown className="w-4 h-4 ml-1" />
-        </Button>
-      )
+      return null
     },
     cell: ({ row }) => {
       const wine = row.original     

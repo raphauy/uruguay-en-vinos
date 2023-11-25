@@ -1,5 +1,10 @@
 import { getArticleDAO } from "@/services/article-services";
 import NovelOnClient from "./editor-on-client";
+import FilesSection from "./files";
+import ImageSection from "./image";
+import SummarySection from "./summary";
+import { format } from "date-fns";
+import ArticleCard from "./article-card";
 
 type Props = {
     params: {
@@ -14,11 +19,15 @@ export default async function Novel({ params }: Props) {
     }
 
     return (
-        <main className="flex flex-col items-center justify-between sm:p-4 xl:p-8">
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tighter text-center md:text-4xl">
-                {article.title}
-            </h1>
+        <main className="flex flex-col p-1 md:p-4 xl:p-8 space-y-2">
+            <ArticleCard article={article} admin />
+
             <NovelOnClient articleId={articleId} initialContent={article.content} />
+
+            <div className="grid lg:grid-cols-2 gap-2 w-full">
+                <FilesSection articleId={articleId} />                
+                <SummarySection articleId={articleId} />
+            </div>
         </main>
     )
 }

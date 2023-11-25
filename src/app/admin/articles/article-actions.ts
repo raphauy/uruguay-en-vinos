@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent } from "@/services/article-services"
+import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary } from "@/services/article-services"
 import { getCurrentUser } from "@/lib/auth"
 import { JSONContent } from "@tiptap/core"
 
@@ -22,7 +22,7 @@ export async function createOrUpdateArticleAction(id: string | null, data: Artic
   return updated as ArticleDAO
 }
 
-export async function createArticleAction(title: string) {
+export async function createArticleAction(title: string, categoryId?: string): Promise<ArticleDAO | null> {
   const user= await getCurrentUser()
   if (!user) return null
 
@@ -31,7 +31,7 @@ export async function createArticleAction(title: string) {
   const authorId= user.id
   const content= ""
   const data= { title, slug, status, authorId, content }
-  const created= await createArticle(data)
+  const created= await createArticle(data, categoryId)
 
   revalidatePath("/admin/articles")
 
@@ -54,4 +54,34 @@ export async function deleteArticleAction(id: string): Promise<ArticleDAO | null
   revalidatePath("/admin/articles")
 
   return deleted as ArticleDAO
+}
+
+export async function addFileAction(id: string, file: FileFormValues): Promise<FileDAO | null> {
+  const updated= await addFile(id, file)
+
+  revalidatePath("/admin/articles")
+
+  return updated as FileDAO
+}
+
+export async function addImageAction(id: string, image: string): Promise<ArticleDAO | null> {
+  const updated= await addImage(id, image)
+
+  revalidatePath("/admin/articles")
+
+  return updated as ArticleDAO
+}
+
+export async function addSummaryAction(id: string, summary: string): Promise<ArticleDAO | null> {
+  const updated= await addSummary(id, summary)
+
+  //revalidatePath("/admin/articles")
+
+  return updated as ArticleDAO
+}
+
+export async function getFilesDAOAction(id: string): Promise<FileDAO[] | null> {
+  const article= await getArticleDAO(id)
+  if (!article) return null
+  return article.files as FileDAO[]
 }

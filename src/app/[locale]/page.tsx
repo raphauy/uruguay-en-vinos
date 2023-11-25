@@ -60,14 +60,18 @@ export default async function Home() {
 
       {/** Reports */}
       <div className="grid md:grid-cols-[2fr_1fr] max-w-3xl gap-8  my-10 mx-4 md:mx-10 text-center md:text-left">
-        <Image src="/informes.png" width={1600} height={1000} alt={t("report_title")} />
+        <Link href="/reports">
+          <Image src="/informes.png" width={1600} height={1000} alt={t("report_title")} />
+        </Link>
         <div className="flex flex-col justify-between items-center md:items-start">
           <div>
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("report_title")}</p>
             <p>{t("report_text")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl mt-3">{t("report_button")}</Button>
+          <Link href="/reports">
+            <Button className="w-32 uppercase rounded-3xl mt-3">{t("report_button")}</Button>
+          </Link>
 
         </div>
       </div>

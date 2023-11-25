@@ -62,6 +62,8 @@ model Article {
   description String?
   slug       String   @unique
   content    String
+  image      String?  @default("/article-placeholder.png")
+  summary    String?
   status     String   @default("draft")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -71,6 +73,19 @@ model Article {
   categories Category[]
   comments   Comment[]
   tags       Tag[]
+  files      File[]
+}
+
+model File {
+  id                String   @id @default(cuid())
+  public_id         String   
+  original_filename String
+  bytes             Int
+  format            String?
+  secure_url        String
+  thumbnail_url     String?
+  articleId         String?
+  article           Article? @relation(fields: [articleId], references: [id], onDelete: Cascade)
 }
 
 model Category {

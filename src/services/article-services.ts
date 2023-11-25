@@ -7,13 +7,40 @@ export type ArticleDAO = {
 	description?:  string
 	slug:  string
 	content:  string
+  image?: string | null
+  summary?: string | null
 	status:  string
 	createdAt:  Date
 	updatedAt:  Date
 	publishedAt?:  Date
 	authorId:  string
   authorName?: string | null
+  categories?: string[]
+  files?: FileDAO[]
 }
+
+export type FileDAO = {
+  id:  string
+  public_id:  string
+  original_filename:  string
+  bytes:  number
+  format:  string
+  secure_url:  string
+  thumbnail_url:  string  
+  articleId?:  string
+  articleName?: string | null
+}
+
+export const fileFormSchema = z.object({
+  public_id: z.string({required_error: "Public Id is required."}),
+  original_filename: z.string({required_error: "Original Filename is required."}),
+  bytes: z.number({required_error: "Bytes is required."}),
+  format: z.string({required_error: "Format is required."}),
+  secure_url: z.string({required_error: "Secure Url is required."}),
+  thumbnail_url: z.string({required_error: "Thumbnail Url is required."}),
+})
+
+export type FileFormValues = z.infer<typeof fileFormSchema>
 
 export const articleFormSchema = z.object({
 	title: z.string({required_error: "Title is required."}),
@@ -31,13 +58,44 @@ export async function getArticlesDAO() {
       createdAt: "desc"
     },
     include: {
-      author: true
-    }
+      author: true,
+      categories: true,
+      files: true
+    },
   })
 
   const res = found.map((article) => ({
     ...article,
-    authorName: article.author?.name || null
+    authorName: article.author?.name || null,
+    categories: article.categories?.map((category) => category.name) || [],
+  }))
+
+  return res as ArticleDAO[]
+}
+
+export async function getArticlesDAOByCategory(categoryId: string) {
+  const found = await prisma.article.findMany({
+    orderBy: {
+      createdAt: "desc"
+    },
+    where: {
+      categories: {
+        some: {
+          id: categoryId
+        }
+      }
+    },
+    include: {
+      author: true,
+      categories: true,
+      files: true
+    },
+  })
+
+  const res = found.map((article) => ({
+    ...article,
+    authorName: article.author?.name || null,
+    categories: article.categories?.map((category) => category.name) || [],
   }))
 
   return res as ArticleDAO[]
@@ -49,7 +107,9 @@ export async function getArticleDAO(id: string) {
       id
     },
     include: {
-      author: true
+      author: true,
+      categories: true,
+      files: true
     }
   })
 
@@ -57,16 +117,34 @@ export async function getArticleDAO(id: string) {
 
   const res = {
     ...found,
-    authorName: found.author?.name || null
+    authorName: found.author?.name || null,
+    categories: found.categories?.map((category) => category.name) || [],
   }
 
   return res as ArticleDAO
 }
     
-export async function createArticle(data: ArticleFormValues) {
+export async function createArticle(data: ArticleFormValues, categoryId?: string) {
+
   const created = await prisma.article.create({
     data
   })
+
+  if (categoryId) {
+    // connect article to category
+    await prisma.article.update({
+      where: {
+        id: created.id
+      },
+      data: {
+        categories: {
+          connect: {
+            id: categoryId
+          }
+        }
+      }
+    })    
+  }
   return created
 }
 
@@ -101,3 +179,53 @@ export async function deleteArticle(id: string) {
   return deleted
 }
     
+export async function addFile(id: string, file: FileFormValues) {
+  
+  const article= await prisma.article.findUnique({
+    where: {
+      id
+    }
+  })
+  if (!article) return null
+
+  const updated = await prisma.file.create({
+    data: {
+      ...file,
+      article: {
+        connect: {
+          id
+        }
+      }
+    }
+  })
+  return updated
+}
+
+
+export async function addImage(id: string, image: string) {
+  
+  const updated = await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      image
+    }
+  })
+  
+  return updated
+}
+
+export async function addSummary(id: string, summary: string) {
+  
+  const updated = await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      summary
+    }
+  })
+  
+  return updated
+}
