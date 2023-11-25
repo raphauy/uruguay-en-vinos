@@ -19,7 +19,7 @@ export default async function ArticleCard({ article, admin }: Props) {
             { !admin && <Image src={image} width={150} height={100} alt="Article Image" className="rounded-lg hidden md:block"/>}
             { admin && <ImageSection articleId={article.id} />}
             <div className="flex flex-col gap-3 px-2 md:px-4 max-w-2xl min-h-[200px] flex-grow">
-                <p className="text-4xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+                <p className="text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl">
                     {article.title}
                 </p>
 
