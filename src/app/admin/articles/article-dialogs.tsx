@@ -38,7 +38,7 @@ export function ArticleDialog({ id }: Props) {
         <DialogHeader>
           <DialogTitle>{id ? "Update" : "Create"} Article</DialogTitle>
         </DialogHeader>
-        <ArticleForm closeDialog={() => setOpen(false)} id={id} />
+        <ArticleForm closeDialog={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   );
