@@ -9,6 +9,7 @@ export default async function ReportsPage() {
     if(!informesCategoryId) return null
     
     const articles= await getArticlesDAOByCategory(informesCategoryId)
+    const publishedArticles= articles.filter((article) => article.status === "published")
 
     return (
         <div className="flex flex-col items-center p-1 md:p-4 xl:p-8  space-y-2">
@@ -16,7 +17,7 @@ export default async function ReportsPage() {
                 Informes
             </h1>
         <div className="flex flex-col items-center p-1 md:p-4 xl:p-8  space-y-2">
-                {articles.map((article)=> {
+                {publishedArticles.map((article)=> {
                     return(
                         <Link key={article.id} href={`/reports/${article.id}`} className="w-full h-full">
                             <ArticleCard article={article} />
