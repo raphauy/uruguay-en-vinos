@@ -10,19 +10,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+import { CategoryDAO } from "@/services/category-services";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { getCategoriesDAOAction } from "../categorys/category-actions";
 import {
   createArticleAction,
-  deleteArticleAction
+  deleteArticleAction,
+  publishUnpublishArticleAction
 } from "./article-actions";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { getCategoriesArrayAction, getCategoriesDAOAction } from "../categorys/category-actions";
-import { CategoryDAO } from "@/services/category-services";
 
 export const titleFormSchema = z.object({
 	title: z.string({required_error: "Title is required."}),
@@ -191,6 +192,49 @@ export function DeleteArticleForm({ id, closeDialog }: DeleteProps) {
       >
         {loading && <Loader className="h-4 w-4 animate-spin" />}
         Delete
+      </Button>
+    </div>
+  );
+}
+
+type PublishUnpublishProps = {
+  id: string;
+  publish: boolean;
+  closeDialog: () => void;
+};
+
+export function PublishUnpublishForm({ id, publish, closeDialog }: PublishUnpublishProps) {
+  const [loading, setLoading] = useState(false);
+
+  async function handlePublishUnpublish() {
+    setLoading(true);
+    publishUnpublishArticleAction(id, publish)
+    .then(() => {
+      toast({ title: "Article updated" });
+      closeDialog()
+    })
+    .catch((error) => {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+
+  }
+
+  return (
+    <div>
+      <Button
+        onClick={() => handlePublishUnpublish()}
+        variant="destructive"
+        className="w-32 ml-2 gap-1"
+      >
+        {loading && <Loader className="h-4 w-4 animate-spin" />}
+        {publish ? "Publish" : "Unpublish"}
       </Button>
     </div>
   );

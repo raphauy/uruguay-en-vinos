@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CategoryDAO } from "@/services/category-services";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { DeleteCategoryDialog, CategoryDialog } from "./category-dialogs";
+import { CategoryDialog, DeleteCategoryDialog } from "./category-dialogs";
 
 export const columns: ColumnDef<CategoryDAO>[] = [
   {

@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary } from "@/services/article-services"
+import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary, publishArticle, unpublishArticle } from "@/services/article-services"
 import { getCurrentUser } from "@/lib/auth"
 import { JSONContent } from "@tiptap/core"
 
@@ -84,4 +84,21 @@ export async function getFilesDAOAction(id: string): Promise<FileDAO[] | null> {
   const article= await getArticleDAO(id)
   if (!article) return null
   return article.files as FileDAO[]
+}
+
+export async function publishUnpublishArticleAction(id: string, publish: boolean): Promise<boolean> {
+
+  let updated= null
+  if (publish) {
+    updated= await publishArticle(id)
+  } else {
+    updated= await unpublishArticle(id)
+  }
+
+  if (updated) {
+    revalidatePath("/admin/articles")
+    return true
+  }
+
+  return false
 }

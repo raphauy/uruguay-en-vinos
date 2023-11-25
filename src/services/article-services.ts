@@ -229,3 +229,33 @@ export async function addSummary(id: string, summary: string) {
   
   return updated
 }
+
+export async function publishArticle(id: string) {
+  
+  const updated = await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      status: "published",
+      publishedAt: new Date()
+    }
+  })
+  
+  return updated
+}
+
+export async function unpublishArticle(id: string) {
+  
+  const updated = await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      status: "draft",
+      publishedAt: null
+    }
+  })
+  
+  return updated
+}

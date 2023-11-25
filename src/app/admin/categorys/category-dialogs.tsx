@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pencil, PlusCircle, Trash2 } from "lucide-react";
+import { ArrowUpDown, Pencil, PlusCircle, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -67,3 +67,4 @@ export function DeleteCategoryDialog({ id, description }: DeleteProps) {
     </Dialog>
   );
 }
+

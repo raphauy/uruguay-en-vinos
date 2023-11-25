@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pencil, PlusCircle, Trash2 } from "lucide-react";
+import { ArrowUpDown, Pencil, PlusCircle, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArticleForm, DeleteArticleForm } from "./article-forms";
+import { ArticleForm, DeleteArticleForm, PublishUnpublishForm } from "./article-forms";
 
 type Props = {
   id?: string;
@@ -63,6 +63,36 @@ export function DeleteArticleDialog({ id, description }: DeleteProps) {
           <DialogDescription className="py-8">{description}</DialogDescription>
         </DialogHeader>
         <DeleteArticleForm closeDialog={() => setOpen(false)} id={id} />
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+type PublishUnpublishProps = {
+  id: string;
+  title: string;
+  publish: boolean;
+};
+
+export function PublishUnpublishDialog({id, publish, title }: PublishUnpublishProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          {publish ? "Publish" : "Unpublish"}
+          <ArrowUpDown className="w-4 h-4 ml-1" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{publish ? "Publish" : "Unpublish"} Article</DialogTitle>
+          <DialogDescription className="py-8">
+            Do you want to {publish ? "publish" : "unpublish"} Article: {title}?
+          </DialogDescription>
+        </DialogHeader>
+        <PublishUnpublishForm id={id} publish={publish} closeDialog={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   );

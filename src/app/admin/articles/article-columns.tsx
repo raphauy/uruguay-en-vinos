@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ArticleDAO } from "@/services/article-services";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Eye } from "lucide-react";
-import { DeleteArticleDialog, ArticleDialog } from "./article-dialogs";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { DeleteArticleDialog, PublishUnpublishDialog } from "./article-dialogs";
 
 export const columns: ColumnDef<ArticleDAO>[] = [
   {
@@ -180,8 +180,10 @@ export const columns: ColumnDef<ArticleDAO>[] = [
 
       const description = `Do you want to delete Article ${data.title}?`;
 
+      const publish= data.status !== "published" ? true : false
       return (
         <div className="flex items-center justify-end gap-2">
+          <PublishUnpublishDialog id={data.id} publish={publish} title={data.title} />
           <Link href={`/admin/articles/${data.id}`}>
             <Button variant="ghost"><Eye  /></Button>
           </Link>
