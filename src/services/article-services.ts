@@ -12,6 +12,7 @@ export type ArticleDAO = {
 	updatedAt:  Date
 	publishedAt?:  Date
 	authorId:  string
+  authorName?: string | null
 }
 
 export const articleFormSchema = z.object({
@@ -27,10 +28,19 @@ export type ArticleFormValues = z.infer<typeof articleFormSchema>
 export async function getArticlesDAO() {
   const found = await prisma.article.findMany({
     orderBy: {
-      // Aquí puedes poner el campo por defecto por el cual ordenar o parametrizarlo
+      createdAt: "desc"
     },
+    include: {
+      author: true
+    }
   })
-  return found as ArticleDAO[]
+
+  const res = found.map((article) => ({
+    ...article,
+    authorName: article.author?.name || null
+  }))
+
+  return res as ArticleDAO[]
 }
   
 export async function getArticleDAO(id: string) {
@@ -38,8 +48,19 @@ export async function getArticleDAO(id: string) {
     where: {
       id
     },
+    include: {
+      author: true
+    }
   })
-  return found as ArticleDAO
+
+  if (!found) return null
+
+  const res = {
+    ...found,
+    authorName: found.author?.name || null
+  }
+
+  return res as ArticleDAO
 }
     
 export async function createArticle(data: ArticleFormValues) {
@@ -55,6 +76,18 @@ export async function updateArticle(id: string, data: ArticleFormValues) {
       id
     },
     data
+  })
+  return updated
+}
+
+export async function updateContent(id: string, content: string) {
+  const updated = await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      content
+    }
   })
   return updated
 }

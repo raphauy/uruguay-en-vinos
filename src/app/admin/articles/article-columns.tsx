@@ -3,8 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { ArticleDAO } from "@/services/article-services";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, Eye } from "lucide-react";
 import { DeleteArticleDialog, ArticleDialog } from "./article-dialogs";
+import Link from "next/link";
 
 export const columns: ColumnDef<ArticleDAO>[] = [
   {
@@ -21,6 +22,15 @@ export const columns: ColumnDef<ArticleDAO>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const data = row.original;
+
+      return (
+        <Link href={`/admin/articles/${data.id}`}>
+          <Button variant="ghost" className="px-0">{data.title}</Button>
+        </Link>
+  );
+    },
   },
 
   {
@@ -32,7 +42,7 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           className="pl-0 dark:text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Description
+          Summary
           <ArrowUpDown className="w-4 h-4 ml-1" />
         </Button>
       );
@@ -104,7 +114,7 @@ export const columns: ColumnDef<ArticleDAO>[] = [
   },
 
   {
-    accessorKey: "authorId",
+    accessorKey: "authorName",
     header: ({ column }) => {
       return (
         <Button
@@ -112,7 +122,7 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           className="pl-0 dark:text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          AuthorId
+          Author
           <ArrowUpDown className="w-4 h-4 ml-1" />
         </Button>
       );
@@ -143,7 +153,9 @@ export const columns: ColumnDef<ArticleDAO>[] = [
 
       return (
         <div className="flex items-center justify-end gap-2">
-          <ArticleDialog id={data.id} />
+          <Link href={`/admin/articles/${data.id}`}>
+            <Button variant="ghost"><Eye  /></Button>
+          </Link>
           <DeleteArticleDialog description={description} id={data.id} />
         </div>
       );

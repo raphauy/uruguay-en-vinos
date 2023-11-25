@@ -39,7 +39,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <SessionProvider session={session}>          
 
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <div className="relative flex flex-col min-h-screen text-verde-oscuro dark:text-verde-claro">
+                <div className="relative flex flex-col min-h-screen text-verde-oscuro dark:text-white">
                   {
                     session && 
                     <div className="flex justify-end gap-2 border-b p-4">

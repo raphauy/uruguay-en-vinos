@@ -1,9 +1,11 @@
 "use client"
 
+import { ThemeToggle } from "@/components/shadcn/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useChangeLocale, useCurrentLocale, useScopedI18n } from "@/locales/client"
 import { Facebook, Instagram, Linkedin, X } from "lucide-react"
+import { useTheme } from "next-themes"
 import Link from "next/link"
 
 type Props = {
@@ -14,6 +16,8 @@ export function CoolMenu({ toggle }: Props) {
   const currentLanguage = useCurrentLocale()
   const t= useScopedI18n('menu')
   const changeLocale = useChangeLocale()
+
+  const { setTheme, theme } = useTheme()
 
   function changeLanguage(lang: "es" | "en" | "pt") {   
     changeLocale(lang)
@@ -87,9 +91,7 @@ export function CoolMenu({ toggle }: Props) {
             <Linkedin className="h-6 w-6" />
           </Link>
         </div>
-        <div className="">
-          <Button variant="outline" autoFocus={true}>Dark Mode</Button>
-        </div>
+        <ThemeToggle />
       </div>
     </section>
   )

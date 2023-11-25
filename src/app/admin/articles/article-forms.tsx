@@ -1,20 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { toast } from "@/components/ui/use-toast";
-import { useEffect, useState } from "react";
-import {
-  deleteArticleAction,
-  createOrUpdateArticleAction,
-  getArticleDAOAction,
-} from "./article-actions";
-import {
-  articleFormSchema,
-  ArticleFormValues,
-} from "@/services/article-services";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -23,47 +9,53 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import {
+  createArticleAction,
+  deleteArticleAction
+} from "./article-actions";
+
+export const titleFormSchema = z.object({
+	title: z.string({required_error: "Title is required."}),
+})
+export type TitleFormValues = z.infer<typeof titleFormSchema>
 
 type Props = {
-  id?: string;
   closeDialog: () => void;
 };
 
-export function ArticleForm({ id, closeDialog }: Props) {
-  const form = useForm<ArticleFormValues>({
-    resolver: zodResolver(articleFormSchema),
+export function ArticleForm({ closeDialog }: Props) {
+  const form = useForm<TitleFormValues>({
+    resolver: zodResolver(titleFormSchema),
     defaultValues: {},
     mode: "onChange",
   });
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: ArticleFormValues) => {
-    setLoading(true);
-    try {
-      await createOrUpdateArticleAction(id ? id : null, data);
-      toast({ title: id ? "Article updated" : "Article created" });
-      closeDialog();
-    } catch (error: any) {
+  const onSubmit = async (data: TitleFormValues) => {
+    setLoading(true)
+    createArticleAction(data.title)
+    .then(() => {
+      toast({ title: "Article created" })
+    })
+    .catch((error) => {
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
+      })
+    })
+    .finally(() => {
+      setLoading(false)
+      closeDialog()
+    });
   };
-
-  useEffect(() => {
-    if (id) {
-      getArticleDAOAction(id).then((data) => {
-        if (data) {
-          form.reset(data);
-        }
-      });
-    }
-  }, [form, id]);
 
   return (
     <div className="p-4 bg-white rounded-md">
@@ -77,76 +69,6 @@ export function ArticleForm({ id, closeDialog }: Props) {
                 <FormLabel>Title</FormLabel>
                 <FormControl>
                   <Input placeholder="Article's title" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Input placeholder="Article's description" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="slug"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Slug</FormLabel>
-                <FormControl>
-                  <Input placeholder="Article's slug" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Content</FormLabel>
-                <FormControl>
-                  <Input placeholder="Article's content" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="status"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Status</FormLabel>
-                <FormControl>
-                  <Input placeholder="Article's status" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="authorId"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>AuthorId</FormLabel>
-                <FormControl>
-                  <Input placeholder="Article's authorId" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -176,7 +98,11 @@ export function ArticleForm({ id, closeDialog }: Props) {
   );
 }
 
-export function DeleteArticleForm({ id, closeDialog }: Props) {
+type DeleteProps = {
+  id?: string;
+  closeDialog: () => void;
+};
+export function DeleteArticleForm({ id, closeDialog }: DeleteProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleDelete() {

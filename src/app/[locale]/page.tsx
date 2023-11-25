@@ -35,7 +35,7 @@ export default async function Home() {
           </div>
 
           <Link href="/presale">
-            <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("button_lo_quiero")}</Button>
+            <Button className="w-32 uppercase rounded-3xl mt-3">{t("button_lo_quiero")}</Button>
           </Link>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default async function Home() {
           </div>
 
           <Link href="/wines">
-            <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("discover_button")}</Button>
+            <Button className="w-32 uppercase rounded-3xl mt-3">{t("discover_button")}</Button>
           </Link>
 
         </div>
@@ -67,7 +67,7 @@ export default async function Home() {
             <p>{t("report_text")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("report_button")}</Button>
+          <Button className="w-32 uppercase rounded-3xl mt-3">{t("report_button")}</Button>
 
         </div>
       </div>
@@ -84,7 +84,7 @@ export default async function Home() {
             <p>{t("suscribe_text5")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl bg-verde-oscuro mt-3">{t("suscribe_button")}</Button>
+          <Button className="w-32 uppercase rounded-3xl mt-3">{t("suscribe_button")}</Button>
 
         </div>
         <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />

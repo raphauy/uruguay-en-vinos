@@ -20,24 +20,24 @@ const data= [
     icon: User,
     text: "Users"
   },
-  // {
-  //   href: "divider", icon: User
-  // },  
-  // {
-  //   href: "/admin/articles",
-  //   icon: Newspaper,
-  //   text: "Articles"
-  // },
-  // {
-  //   href: "/admin/categorys",
-  //   icon: Shapes,
-  //   text: "Categories"
-  // },
-  // {
-  //   href: "/admin/tags",
-  //   icon: Tag,
-  //   text: "Tags"
-  // },
+  {
+    href: "divider", icon: User
+  },  
+  {
+    href: "/admin/articles",
+    icon: Newspaper,
+    text: "Articles"
+  },
+  {
+    href: "/admin/categorys",
+    icon: Shapes,
+    text: "Categories"
+  },
+  {
+    href: "/admin/tags",
+    icon: Tag,
+    text: "Tags"
+  },
   {
     href: "divider", icon: User
   },
@@ -46,19 +46,14 @@ const data= [
     icon: Wine,
     text: "Wines"
   },
-  // {
-  //   href: "divider", icon: User
-  // },
-  // {
-  //   href: "/admin/chat",
-  //   icon: MessageCircle,
-  //   text: "Chat"
-  // },
-  // {
-  //   href: "/admin/novel",
-  //   icon: BookA,
-  //   text: "Novel"
-  // },
+  {
+    href: "divider", icon: User
+  },
+  {
+    href: "/admin/chat",
+    icon: MessageCircle,
+    text: "Chat"
+  },
 ]
 
 
@@ -73,8 +68,8 @@ export default function SideBar() {
   return (
     <div className="flex flex-col justify-between border-r border-r-osom-color/50">
       <section className="flex flex-col gap-3 py-4 mt-3 ">
-        {data.map(({ href, icon: Icon, text }) => {
-          if (href === "divider") return divider()
+        {data.map(({ href, icon: Icon, text }, index) => {
+          if (href === "divider") return divider(index)
           
           const selected= path.endsWith(href)
           const classes= cn(commonClasses, selected && selectedClasses)
@@ -109,6 +104,6 @@ export default function SideBar() {
 }
 
 
-function divider() {
-  return <div className="mx-2 my-5 border-b border-b-osom-color/50" />
+function divider(index?: number) {
+  return <div key={index} className="mx-2 my-5 border-b border-b-osom-color/50" />
 }

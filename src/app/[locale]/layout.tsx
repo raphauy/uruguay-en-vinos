@@ -8,7 +8,7 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
 
   const locale= useCurrentLocale()
   return (
-    <div className="flex flex-col w-full text-verde-oscuro">
+    <div className="flex flex-col w-full">
           <I18nProviderClient locale={locale}>
             <SheetMenu />
           </I18nProviderClient>
