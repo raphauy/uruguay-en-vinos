@@ -102,7 +102,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             </FormItem>
           )}
         />
-          <Button disabled={isLoading} className="w-full">
+          <Button disabled={isLoading} className="w-full whitespace-nowrap">
             {isLoading && (
               <LoadingSpinnerChico />
             )}
