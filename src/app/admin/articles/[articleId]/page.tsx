@@ -1,10 +1,8 @@
+import ReportCard from "@/app/[locale]/reports/report-card";
 import { getArticleDAO } from "@/services/article-services";
 import NovelOnClient from "./editor-on-client";
 import FilesSection from "./files";
-import ImageSection from "./image";
 import SummarySection from "./summary";
-import { format } from "date-fns";
-import ArticleCard from "./article-card";
 
 type Props = {
     params: {
@@ -20,7 +18,7 @@ export default async function Novel({ params }: Props) {
 
     return (
         <main className="flex flex-col p-1 md:p-4 xl:p-8 space-y-2">
-            <ArticleCard article={article} admin />
+            <ReportCard article={article} admin />
 
             <NovelOnClient articleId={articleId} initialContent={article.content} />
 
