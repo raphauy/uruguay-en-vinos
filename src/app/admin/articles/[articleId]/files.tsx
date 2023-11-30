@@ -77,7 +77,7 @@ export default function FilesSection({ articleId }: Props) {
                             const fileName = file.original_filename + format
                             return (
                             <Link key={file.id} href={file.secure_url} target="_blank">
-                                <Button className="space-x-2 w-full">
+                                <Button className="space-x-2 w-full" variant="link">
                                     <p>{fileName}</p>
                                     <Download />
                                 </Button>

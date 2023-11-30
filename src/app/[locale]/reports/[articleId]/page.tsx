@@ -14,10 +14,12 @@ export default async function ArticleView({ params }: Props) {
     const articleId = params.articleId
     const article = await getArticleDAO(articleId);
     if (!article) {
-        return <div>Article not found</div>
+        return <div className="text-center mt-10">Article not found</div>
     }
     if (article.status !== "published")
-        return <div>Article not published</div>
+        return <div className="text-center mt-10">Article not published</div>
+    if (!article.content)
+        return <div className="text-center mt-10">Article has no content</div>
 
     const files = article.files || []
 
@@ -35,7 +37,7 @@ export default async function ArticleView({ params }: Props) {
                                 const fileName = file.original_filename + format
                                 return (
                                 <Link key={file.id} href={file.secure_url} target="_blank">
-                                    <Button className="space-x-2 w-full">
+                                    <Button className="space-x-2 w-full" variant="link">
                                         <p>{fileName}</p>
                                         <Download />
                                     </Button>
