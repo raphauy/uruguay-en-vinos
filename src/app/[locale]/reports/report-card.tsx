@@ -6,8 +6,9 @@ import Image from "next/image";
 type Props = {
     article: ArticleDAO
     admin?: boolean
+    h1?: boolean
 }
-export default async function ReportCard({ article, admin }: Props) {
+export default async function ReportCard({ article, admin, h1 }: Props) {
 
     const categories= article.categories
 
@@ -19,9 +20,15 @@ export default async function ReportCard({ article, admin }: Props) {
             { !admin && <Image src={image} width={150} height={100} alt="Article Image" className="rounded-lg hidden md:block"/>}
             { admin && <ImageSection articleId={article.id} />}
             <div className="flex flex-col gap-3 px-2 md:px-4 max-w-2xl min-h-[200px] flex-grow">
-                <p className="text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl">
-                    {article.title}
-                </p>
+                {
+                    h1 ? 
+                    <h1 className="text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl">
+                        {article.title}
+                    </h1> :
+                    <h2 className="text-2xl font-extrabold leading-tight tracking-tighter md:text-3xl">
+                        {article.title}
+                    </h2>
+            }
 
                 <p className="flex-1">
                     {article.summary}

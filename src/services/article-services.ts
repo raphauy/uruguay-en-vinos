@@ -123,6 +123,30 @@ export async function getArticleDAO(id: string) {
 
   return res as ArticleDAO
 }
+
+export async function getArticlesDAOBySlug(slug: string) {
+  const found = await prisma.article.findUnique({
+    where: {
+      slug
+    },
+    include: {
+      author: true,
+      categories: true,
+      files: true
+    }
+  })
+
+  if (!found) return null
+
+  const res = {
+    ...found,
+    authorName: found.author?.name || null,
+    categories: found.categories?.map((category) => category.name) || [],
+  }
+
+  return res as ArticleDAO
+}
+  
     
 export async function createArticle(data: ArticleFormValues, categoryId?: string) {
 

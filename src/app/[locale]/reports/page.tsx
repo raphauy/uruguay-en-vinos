@@ -34,7 +34,7 @@ export default async function ReportsPage() {
         <div className="flex flex-col items-center p-1 md:p-4 xl:p-8  space-y-2">
                 {publishedArticles.map((article)=> {
                     return(
-                        <Link key={article.id} href={`/reports/${article.id}`} className="w-full h-full">
+                        <Link key={article.id} href={`/reports/${article.slug}`} className="w-full h-full">
                             <ReportCard article={article} />
                         </Link> 
                     )})

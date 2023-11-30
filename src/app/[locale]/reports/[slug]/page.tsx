@@ -1,18 +1,18 @@
 import ContentViewer from "@/app/admin/articles/[articleId]/preview/content-viewer";
 import { Button } from "@/components/ui/button";
-import { getArticleDAO } from "@/services/article-services";
+import { getArticleDAO, getArticlesDAOBySlug } from "@/services/article-services";
 import { Download } from "lucide-react";
 import Link from "next/link";
 import ReportCard from "../report-card";
 
 type Props = {
     params: {
-        articleId: string
+        slug: string
     }
 }
 export default async function ArticleView({ params }: Props) {
-    const articleId = params.articleId
-    const article = await getArticleDAO(articleId);
+    const slug = params.slug
+    const article = await getArticlesDAOBySlug(slug)
     if (!article) {
         return <div className="text-center mt-10">Article not found</div>
     }
@@ -26,7 +26,7 @@ export default async function ArticleView({ params }: Props) {
     return (
         <div className="flex w-full justify-center">
             <div className="flex flex-col justify-center max-w-6xl justify-self-center items-center p-1 md:p-4 xl:p-8  space-y-2">
-                <ReportCard article={article} />
+                <ReportCard article={article} h1/>
 
                 <ContentViewer content={article.content} />            
 
