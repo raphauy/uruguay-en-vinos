@@ -19,7 +19,7 @@ type Props = {
 };
 
 const addTrigger = (
-  <Button>
+  <Button variant="outline">
     <PlusCircle size={22} className="mr-2" />
     Create Article
   </Button>
@@ -81,7 +81,7 @@ export function PublishUnpublishDialog({id, publish, title }: PublishUnpublishPr
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {publish ?
-          <Button >
+          <Button variant="outline">
             Publish <ArrowUp className="w-4 h-4" />
           </Button> :
           <Button variant="outline">
