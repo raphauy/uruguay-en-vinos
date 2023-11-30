@@ -1,7 +1,6 @@
-import ArticleCard from "@/app/admin/articles/[articleId]/article-card"
 import { getArticlesDAOByCategory } from "@/services/article-services"
-import Image from "next/image"
 import Link from "next/link"
+import ReportCard from "./report-card"
 
 
 export default async function ReportsPage() {
@@ -20,7 +19,7 @@ export default async function ReportsPage() {
                 {publishedArticles.map((article)=> {
                     return(
                         <Link key={article.id} href={`/reports/${article.id}`} className="w-full h-full">
-                            <ArticleCard article={article} />
+                            <ReportCard article={article} />
                         </Link> 
                     )})
                 }
