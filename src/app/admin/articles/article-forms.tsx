@@ -134,7 +134,7 @@ export function ArticleForm({ closeDialog }: Props) {
             >
               Cancel
             </Button>
-            <Button type="submit" className="w-32 ml-2">
+            <Button type="submit" className="w-32 ml-2" variant="outline">
               {loading ? (
                 <Loader className="h-4 w-4 animate-spin" />
               ) : (

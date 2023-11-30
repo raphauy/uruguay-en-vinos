@@ -26,7 +26,7 @@ export async function createArticleAction(title: string, categoryId?: string): P
   const user= await getCurrentUser()
   if (!user) return null
 
-  const titleSanitized= title.replace("-", "")
+  const titleSanitized= title.replace("- ", "")
   const slug= titleSanitized.toLowerCase().replace(/ /g, "-")
   const status= "draft"
   const authorId= user.id
