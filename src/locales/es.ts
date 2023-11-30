@@ -21,7 +21,7 @@ export default {
     suscribe_text5: "y mucho más",
     suscribe_action: "¿Querés enterarte de las novedades?",
     suscribe_button: "Suscribite",
-    footer_copyrigth: "© 2024 Uruguay en vinos Desarrollado por Tinta",
+    footer_copyrigth: "© 2024 Uruguay en vinos Desarrollado por",
   },
   presale: {
     title: "Preventa del libro",

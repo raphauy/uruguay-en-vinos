@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { getScopedI18n } from "@/locales/server"
 import { Facebook, Instagram, Linkedin } from "lucide-react"
 import Link from "next/link"
@@ -12,7 +13,12 @@ export default async function FooterPage() {
                 <Link href="https://www.facebook.com/gabizimmeruy" target="_blank"><Facebook size={32} /></Link>
                 <Link href="https://www.linkedin.com/in/gabi-zimmer" target="_blank"><Linkedin size={32} /></Link>
             </div>
-            <p>{t("footer_copyrigth")}</p>
+            <div className="flex items-center justify-center gap-2">
+                <p>{t("footer_copyrigth")}</p>
+                <Link href="https://tinta.wine">
+                    <Button variant="link" className="px-0 mt-[0.6px] text-base">Tinta</Button>
+                </Link>
+            </div>
         </div>
     )
 }

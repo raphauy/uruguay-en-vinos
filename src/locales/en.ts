@@ -21,7 +21,7 @@ export default {
     suscribe_text5: "and more",
     suscribe_action: "Want to find out about the news?",
     suscribe_button: "Subscribe",
-    footer_copyrigth: "© 2024 Uruguay in wines Developed by Tinta",
+    footer_copyrigth: "© 2024 Uruguay in wines Developed by",
   },
   presale: {
     title: "Book pre-sale",

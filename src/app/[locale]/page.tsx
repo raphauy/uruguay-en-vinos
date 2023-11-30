@@ -88,10 +88,14 @@ export default async function Home() {
             <p>{t("suscribe_text5")}</p>
           </div>
 
-          <Button className="w-32 uppercase rounded-3xl mt-3">{t("suscribe_button")}</Button>
+          <Link href="/presale">
+            <Button className="w-32 uppercase rounded-3xl mt-3">{t("suscribe_button")}</Button>
+          </Link>
 
         </div>
-        <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
+        <Link href="/presale">
+          <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
+        </Link>
       </div>
 
 
