@@ -16,6 +16,8 @@ export default async function ArticleView({ params }: Props) {
     if (!article) {
         return <div>Article not found</div>
     }
+    if (article.status !== "published")
+        return <div>Article not published</div>
 
     const files = article.files || []
 
