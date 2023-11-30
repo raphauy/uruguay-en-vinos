@@ -14,7 +14,6 @@ export const userFormSchema = z.object({
 	name: z.string().optional(),
 	email: z.string({required_error: "Email is required."}),
 	role: z.string({required_error: "Role is required."}),
-	image: z.string().optional(),
 })
 export type UserFormValues = z.infer<typeof userFormSchema>
 

@@ -108,20 +108,6 @@ export function UserForm({ id, closeDialog }: Props) {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image</FormLabel>
-                <FormControl>
-                  <Input placeholder="User's image" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <div className="flex justify-end">
             <Button
               onClick={() => closeDialog()}
