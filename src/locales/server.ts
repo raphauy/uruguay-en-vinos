@@ -6,6 +6,5 @@ export const { getI18n, getScopedI18n, getCurrentLocale } = createI18nServer(
     en: () => import('./en'),
     pt: () => import('./pt'),
     fr: () => import('./fr'),
-    gl: () => import('./gl'),
   }
 )

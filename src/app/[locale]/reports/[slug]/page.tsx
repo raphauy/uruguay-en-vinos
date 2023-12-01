@@ -1,7 +1,7 @@
 import ContentViewer from "@/app/admin/articles/[articleId]/preview/content-viewer";
 import { Button } from "@/components/ui/button";
 import { getArticleDAO, getArticlesDAOBySlug } from "@/services/article-services";
-import { Download } from "lucide-react";
+import { CornerLeftUp, Download, MoveRight } from "lucide-react";
 import Link from "next/link";
 import ReportCard from "../report-card";
 
@@ -30,14 +30,17 @@ export default async function ArticleView({ params }: Props) {
 
                 <ContentViewer content={article.content} />            
 
-                <div className="grid gap-2">
+                <div className="flex items-center gap-8">
+                    {files.length > 0 && <p>Descargar Informe</p>}
+                    {files.length > 0 && <MoveRight />}
+                    <div className="grid gap-2">
                         {
                             files.map((file) => {
                                 const format= file.format ? "." + file.format : ""
                                 const fileName = file.original_filename + format
                                 return (
                                 <Link key={file.id} href={file.secure_url} target="_blank">
-                                    <Button className="space-x-2 w-full" variant="link">
+                                    <Button className="flex items-center gap-2 justify-end w-full" variant="link">
                                         <p>{fileName}</p>
                                         <Download />
                                     </Button>
@@ -45,6 +48,11 @@ export default async function ArticleView({ params }: Props) {
                             )})
                         }
                     </div>
+                </div>
+
+                <Link href="/reports" className="self-start">
+                    <Button variant="outline" className="flex items-center gap-1"><CornerLeftUp />Volver a Informes</Button>
+                </Link>
 
             </div>
 

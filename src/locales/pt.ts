@@ -41,5 +41,11 @@ export default {
     presale: "Pré-venda",
     wines: "Vinhos",
     reports: "Relatórios",
-  } 
+  },
+  wines: {
+    title: "Vinhos",
+  },
+  reports: {
+    title: "Relatórios",
+  },
 } as const
