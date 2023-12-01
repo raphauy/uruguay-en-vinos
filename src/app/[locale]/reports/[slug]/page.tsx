@@ -30,7 +30,7 @@ export default async function ArticleView({ params }: Props) {
 
                 <ContentViewer content={article.content} />            
 
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-8 py-10">
                     {files.length > 0 && <p>Descargar Informe</p>}
                     {files.length > 0 && <MoveRight />}
                     <div className="grid gap-2">
