@@ -47,10 +47,6 @@ export function CoolMenu({ toggle }: Props) {
                   currentLanguage === "fr" &&
                   <SelectValue className="text-muted-foreground">Français</SelectValue>
                 }
-                {
-                  currentLanguage === "gl" &&
-                  <SelectValue className="text-muted-foreground">Galego</SelectValue>
-                }
                 
               </SelectTrigger>
             <SelectContent id="select">
@@ -58,7 +54,6 @@ export function CoolMenu({ toggle }: Props) {
               <SelectItem value={"en"}>English</SelectItem>
               <SelectItem value={"pt"}>Português</SelectItem>
               <SelectItem value={"fr"}>Français</SelectItem>
-              <SelectItem value={"gl"}>Galego</SelectItem>
             </SelectContent>
           </Select>
         </div>
