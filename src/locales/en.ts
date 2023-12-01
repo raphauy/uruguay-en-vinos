@@ -47,5 +47,7 @@ export default {
   },
   reports: {
     title: "Reports",
+    back_button: "Back to reports",
+    download: "Download Report",
   },
 } as const

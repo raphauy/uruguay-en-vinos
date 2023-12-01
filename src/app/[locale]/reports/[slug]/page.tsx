@@ -4,6 +4,7 @@ import { getArticleDAO, getArticlesDAOBySlug } from "@/services/article-services
 import { CornerLeftUp, Download, MoveRight } from "lucide-react";
 import Link from "next/link";
 import ReportCard from "../report-card";
+import { getScopedI18n } from "@/locales/server";
 
 type Props = {
     params: {
@@ -23,6 +24,8 @@ export default async function ArticleView({ params }: Props) {
 
     const files = article.files || []
 
+    const t = await getScopedI18n("reports")
+
     return (
         <div className="flex w-full justify-center">
             <div className="flex flex-col justify-center max-w-6xl justify-self-center items-center p-1 md:p-4 xl:p-8  space-y-2">
@@ -31,7 +34,7 @@ export default async function ArticleView({ params }: Props) {
                 <ContentViewer content={article.content} />            
 
                 <div className="flex items-center gap-8 py-10">
-                    {files.length > 0 && <p>Descargar Informe</p>}
+                    {files.length > 0 && <p>{t("download")}</p>}
                     {files.length > 0 && <MoveRight />}
                     <div className="grid gap-2">
                         {
@@ -51,7 +54,7 @@ export default async function ArticleView({ params }: Props) {
                 </div>
 
                 <Link href="/reports" className="self-start">
-                    <Button variant="outline" className="flex items-center gap-1"><CornerLeftUp />Volver a Informes</Button>
+                    <Button variant="outline" className="flex items-center gap-1"><CornerLeftUp />{t("back_button")}</Button>
                 </Link>
 
             </div>
