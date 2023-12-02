@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   createArticleAction,
+  createOrUpdateArticleAction,
   deleteArticleAction,
   getArticleDAOAction,
   publishUnpublishArticleAction
@@ -56,8 +57,13 @@ export function ArticleForm({ id, closeDialog }: Props) {
 
 
   const onSubmit = async (data: TitleFormValues) => {
+    let idParam= null
+    if (id)
+      idParam= id
+
     setLoading(true)
-    createArticleAction(data.title)
+
+    createOrUpdateArticleAction(idParam, data.title)
     .then(() => {
       toast({ title: "Article created" })
     })

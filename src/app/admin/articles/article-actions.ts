@@ -10,12 +10,24 @@ export async function getArticleDAOAction(id: string): Promise<ArticleDAO | null
   return getArticleDAO(id)
 }
 
-export async function createOrUpdateArticleAction(id: string | null, data: ArticleFormValues): Promise<ArticleDAO | null> {       
+export async function createOrUpdateArticleAction(id: string | null, title: string): Promise<ArticleDAO | null> {       
   let updated= null
   if (id) {
-      updated= await updateArticle(id, data)
+      updated= await updateArticle(id, title)
   } else {
-      updated= await createArticle(data)
+    const user= await getCurrentUser()
+    if (!user) return null
+
+    const titleSanitized= title.replace("- ", "")
+    const slug= titleSanitized.toLowerCase().replace(/ /g, "-")
+    const status= "draft"
+    const authorId= user.id
+    const content= ""
+    const data= { title, slug, status, authorId, content }
+    updated= await createArticle(data)
+  
+    revalidatePath("/admin/articles")
+  
   }     
 
   revalidatePath("/admin/articles")

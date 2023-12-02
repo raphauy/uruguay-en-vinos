@@ -174,12 +174,14 @@ export async function createArticle(data: ArticleFormValues, categoryId?: string
   return created
 }
 
-export async function updateArticle(id: string, data: ArticleFormValues) {
+export async function updateArticle(id: string, title: string) {
   const updated = await prisma.article.update({
     where: {
       id
     },
-    data
+    data: {
+      title
+    }
   })
   return updated
 }
