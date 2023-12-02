@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { DeleteArticleDialog, PublishUnpublishDialog } from "./article-dialogs";
+import { ArticleDialog, CategorysDialog, DeleteArticleDialog, PublishUnpublishDialog } from "./article-dialogs";
 
 export const columns: ColumnDef<ArticleDAO>[] = [
   {
@@ -53,8 +53,8 @@ export const columns: ColumnDef<ArticleDAO>[] = [
           <div className="flex justify-center">
               {
                   data.categories?.map((category) => (
-                      <div key={category} className="bg-naranja text-verde-oscuro w-fit px-4 rounded-full font-bold">
-                          {category}
+                      <div key={category.id} className="bg-naranja text-verde-oscuro w-fit px-4 rounded-full font-bold">
+                          {category.name}
                       </div>
                   ))
               }
@@ -146,13 +146,16 @@ export const columns: ColumnDef<ArticleDAO>[] = [
 
       const publish= data.status !== "published" ? true : false
       return (
-        <div className="space-y-10">
+        <div className="flex flex-col justify-between items-center gap-3">
           <PublishUnpublishDialog id={data.id} publish={publish} title={data.title} />
 
-          <div className="flex items-center">
-            <Link href={`/admin/articles/${data.id}`}>
-              <Button variant="ghost"><Eye  /></Button>
-            </Link>
+          <Link href={`/admin/articles/${data.id}`}>
+            <Button variant="ghost"><Eye size={30}  /></Button>
+          </Link>
+
+          <div className="flex items-center gap-2">
+            <CategorysDialog id={data.id} title={"Categories"}/>
+            <ArticleDialog id={data.id} />
             <DeleteArticleDialog description={description} id={data.id} />
           </div>
         </div>

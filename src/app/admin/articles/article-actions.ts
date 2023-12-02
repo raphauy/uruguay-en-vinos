@@ -1,9 +1,10 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary, publishArticle, unpublishArticle } from "@/services/article-services"
+import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary, publishArticle, unpublishArticle, getComplentaryCategorys, setCategorys } from "@/services/article-services"
 import { getCurrentUser } from "@/lib/auth"
 import { JSONContent } from "@tiptap/core"
+import { CategoryDAO } from "@/services/category-services"
 
 export async function getArticleDAOAction(id: string): Promise<ArticleDAO | null> {
   return getArticleDAO(id)
@@ -22,7 +23,7 @@ export async function createOrUpdateArticleAction(id: string | null, data: Artic
   return updated as ArticleDAO
 }
 
-export async function createArticleAction(title: string, categoryId?: string): Promise<ArticleDAO | null> {
+export async function createArticleAction(title: string): Promise<ArticleDAO | null> {
   const user= await getCurrentUser()
   if (!user) return null
 
@@ -32,7 +33,7 @@ export async function createArticleAction(title: string, categoryId?: string): P
   const authorId= user.id
   const content= ""
   const data= { title, slug, status, authorId, content }
-  const created= await createArticle(data, categoryId)
+  const created= await createArticle(data)
 
   revalidatePath("/admin/articles")
 
@@ -102,4 +103,18 @@ export async function publishUnpublishArticleAction(id: string, publish: boolean
   }
 
   return false
+}
+
+export async function getComplentaryCategorysAction(id: string): Promise<CategoryDAO[]> {
+  const complementary= await getComplentaryCategorys(id)
+
+  return complementary as CategoryDAO[]
+}
+
+export async function setCategorysAction(id: string, categorys: CategoryDAO[]): Promise<boolean> {
+  const res= setCategorys(id, categorys)
+
+  revalidatePath("/admin/articles")
+
+  return res
 }

@@ -44,8 +44,8 @@ export default async function ReportCard({ article, admin, h1 }: Props) {
                 <div>
                 {
                     categories?.map((category) => (
-                        <div key={category} className="bg-naranja text-verde-oscuro px-4 rounded-full font-bold">
-                            {category}
+                        <div key={category.id} className="bg-naranja text-verde-oscuro px-4 rounded-full font-bold">
+                            {category.name}
                         </div>
                     ))
                 }

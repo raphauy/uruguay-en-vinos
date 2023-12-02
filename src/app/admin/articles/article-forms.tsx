@@ -10,58 +10,54 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import { CategoryDAO } from "@/services/category-services";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { getCategoriesDAOAction } from "../categorys/category-actions";
 import {
   createArticleAction,
   deleteArticleAction,
+  getArticleDAOAction,
   publishUnpublishArticleAction
 } from "./article-actions";
 
 export const titleFormSchema = z.object({
 	title: z.string({required_error: "Title is required."}),
-  categoryId: z.string().optional(),
 })
 export type TitleFormValues = z.infer<typeof titleFormSchema>
 
 type Props = {
+  id?: string
   closeDialog: () => void;
 };
 
-export function ArticleForm({ closeDialog }: Props) {
+export function ArticleForm({ id, closeDialog }: Props) {
   const form = useForm<TitleFormValues>({
     resolver: zodResolver(titleFormSchema),
     defaultValues: {},
     mode: "onChange",
   });
   const [loading, setLoading] = useState(false)
-  const [categories, setCategories] = useState<CategoryDAO[]>([])
 
   useEffect(() => {
-    getCategoriesDAOAction()
-    .then((categories) => {
-      setCategories(categories)
-    })
-    .catch((error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
+    console.log("id", id);
+    
+    if (id) {      
+      getArticleDAOAction(id).then((data) => {
+        console.log("data", data)        
+        if (data) {
+          form.setValue("title", data.title)
+        }
       })
-    })
-  }, [])
-  
+    }
+  }, [form, id])
+
 
   const onSubmit = async (data: TitleFormValues) => {
     setLoading(true)
-    createArticleAction(data.title, data.categoryId)
+    createArticleAction(data.title)
     .then(() => {
       toast({ title: "Article created" })
     })
@@ -95,36 +91,6 @@ export function ArticleForm({ closeDialog }: Props) {
               </FormItem>
             )}
           />
-                  <FormField
-          control={form.control}
-          name="categoryId"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Categoría</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    {
-                      field.value ? 
-                      <SelectValue className="text-muted-foreground">{categories.filter(category => category.id === field.value)[0].name}</SelectValue> :
-                      <SelectValue className="text-muted-foreground" placeholder="Selecciona una Categoría" />
-                    }
-                    
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
-                  ))
-                  }
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-
           <div className="flex justify-end">
             <Button
               onClick={() => closeDialog()}

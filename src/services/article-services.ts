@@ -1,5 +1,6 @@
 import * as z from "zod"
 import { prisma } from "@/lib/db"
+import { CategoryDAO, getCategorysDAO } from "./category-services"
 
 export type ArticleDAO = {
   id:  string
@@ -15,8 +16,9 @@ export type ArticleDAO = {
 	publishedAt?:  Date
 	authorId:  string
   authorName?: string | null
-  categories?: string[]
+//  categories?: string[]
   files?: FileDAO[]
+  categories: CategoryDAO[]
 }
 
 export type FileDAO = {
@@ -67,7 +69,7 @@ export async function getArticlesDAO() {
   const res = found.map((article) => ({
     ...article,
     authorName: article.author?.name || null,
-    categories: article.categories?.map((category) => category.name) || [],
+//    categories: article.categories?.map((category) => category.name) || [],
   }))
 
   return res as ArticleDAO[]
@@ -95,7 +97,7 @@ export async function getArticlesDAOByCategory(categoryId: string) {
   const res = found.map((article) => ({
     ...article,
     authorName: article.author?.name || null,
-    categories: article.categories?.map((category) => category.name) || [],
+//    categories: article.categories?.map((category) => category.name) || [],
   }))
 
   return res as ArticleDAO[]
@@ -118,7 +120,7 @@ export async function getArticleDAO(id: string) {
   const res = {
     ...found,
     authorName: found.author?.name || null,
-    categories: found.categories?.map((category) => category.name) || [],
+//    categories: found.categories?.map((category) => category.name) || [],
   }
 
   return res as ArticleDAO
@@ -141,7 +143,7 @@ export async function getArticlesDAOBySlug(slug: string) {
   const res = {
     ...found,
     authorName: found.author?.name || null,
-    categories: found.categories?.map((category) => category.name) || [],
+//    categories: found.categories?.map((category) => category.name) || [],
   }
 
   return res as ArticleDAO
@@ -282,4 +284,61 @@ export async function unpublishArticle(id: string) {
   })
   
   return updated
+}
+
+export async function getComplentaryCategorys(id: string) {
+  const found = await prisma.article.findUnique({
+    where: {
+      id
+    },
+    include: {
+      categories: true
+    }
+  })
+  const all= await getCategorysDAO()
+  const res= all.filter(aux => {
+    return !found?.categories.find(c => c.id === aux.id)
+  })
+  
+  return res
+}
+
+export async function setCategorys(id: string, categorys: CategoryDAO[]) {
+  const oldCategorys= await prisma.article.findUnique({
+    where: {
+      id
+    },
+    include: {
+      categories: true
+    }
+  })
+  .then(res => res?.categories)
+
+  await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      categories: {
+        disconnect: oldCategorys
+      }
+    }
+  })
+
+  const updated= await prisma.article.update({
+    where: {
+      id
+    },
+    data: {
+      categories: {
+        connect: categorys.map(c => ({id: c.id}))
+      }
+    }
+  })
+
+  if (!updated) {
+    return false
+  }
+
+  return true
 }
