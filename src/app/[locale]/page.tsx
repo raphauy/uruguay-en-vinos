@@ -34,7 +34,7 @@ export default async function Home() {
             <p>{t("book_actual")}</p>
           </div>
 
-          <Link href="/presale">
+          <Link href="https://libro.uruguayenvinos.com">
             <Button className="w-32 uppercase rounded-3xl mt-3">{t("button_lo_quiero")}</Button>
           </Link>
         </div>
@@ -82,10 +82,10 @@ export default async function Home() {
           <div className="text-center md:text-left">
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("suscribe_title")}</p>
             <p>{t("suscribe_text1")}</p>
-            <p>{t("suscribe_text2")}</p>
+            {/* <p>{t("suscribe_text2")}</p>
             <p>{t("suscribe_text3")}</p>
             <p>{t("suscribe_text4")}</p>
-            <p>{t("suscribe_text5")}</p>
+            <p>{t("suscribe_text5")}</p> */}
           </div>
 
           <Link href="/presale">

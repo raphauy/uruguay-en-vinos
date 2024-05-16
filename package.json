@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "turbo": "next dev --turbo",
     "build": "next build",
     "postinstall": "prisma generate",
     "start": "next start -p 8057",
@@ -44,7 +45,7 @@
     "geist": "^1.0.1",
     "inquirer": "^9.2.12",
     "lucide-react": "^0.292.0",
-    "next": "^14.0.3",
+    "next": "^14.2.3",
     "next-auth": "^4.24.4",
     "next-cloudinary": "^5.7.0",
     "next-international": "^1.1.4",

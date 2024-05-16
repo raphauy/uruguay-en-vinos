@@ -62,7 +62,7 @@ export function CoolMenu({ toggle }: Props) {
         <Link className="text-lg font-bold" href={`/`} onClick={toggle}>
           {t('home')}
         </Link>
-        <Link className="text-lg font-bold" href={`/presale`} onClick={toggle}>
+        <Link className="text-lg font-bold" href="https://libro.uruguayenvinos.com" onClick={toggle}>
           {t('presale')}
         </Link>
         <Link className="text-lg font-bold" href={`/wines`} onClick={toggle}>
