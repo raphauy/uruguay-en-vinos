@@ -50,4 +50,7 @@ export default {
     back_button: "Volver a informes",
     download: "Descargar Informe",
   },
-} as const
+  wineries: {
+    title: "Bodegas",
+    back_button: "Volver a bodegas",
+  },} as const

@@ -30,6 +30,15 @@ export async function getCategoryDAO(id: string) {
   })
   return found as CategoryDAO
 }
+
+export async function getCategoryDAOByName(name: string) {
+  const found = await prisma.category.findUnique({
+    where: {
+      name
+    },
+  })
+  return found as CategoryDAO
+}
     
 export async function createCategory(data: CategoryFormValues) {
   const created = await prisma.category.create({

@@ -50,4 +50,8 @@ export default {
     back_button: "Back to reports",
     download: "Download Report",
   },
+  wineries: {
+    title: "Wineries",
+    back_button: "Back to wineries",
+  },
 } as const

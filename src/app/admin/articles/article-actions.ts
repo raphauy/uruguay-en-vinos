@@ -1,10 +1,10 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { ArticleDAO, ArticleFormValues, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary, publishArticle, unpublishArticle, getComplentaryCategorys, setCategorys } from "@/services/article-services"
+import { ArticleDAO, createArticle, updateArticle, getArticleDAO, deleteArticle, updateContent, addFile, FileFormValues, FileDAO, addImage, addSummary, publishArticle, unpublishArticle, getComplentaryCategorys, setCategorys } from "@/services/article-services"
 import { getCurrentUser } from "@/lib/auth"
-import { JSONContent } from "@tiptap/core"
 import { CategoryDAO } from "@/services/category-services"
+import slugify from 'slugify';
 
 export async function getArticleDAOAction(id: string): Promise<ArticleDAO | null> {
   return getArticleDAO(id)
@@ -18,8 +18,7 @@ export async function createOrUpdateArticleAction(id: string | null, title: stri
     const user= await getCurrentUser()
     if (!user) return null
 
-    const titleSanitized= title.replace("- ", "")
-    const slug= titleSanitized.toLowerCase().replace(/ /g, "-")
+    const slug= slugify(title, { lower: true, remove: /[*+~.()'"!:@]/g })
     const status= "draft"
     const authorId= user.id
     const content= ""
@@ -39,8 +38,7 @@ export async function createArticleAction(title: string): Promise<ArticleDAO | n
   const user= await getCurrentUser()
   if (!user) return null
 
-  const titleSanitized= title.replace("- ", "")
-  const slug= titleSanitized.toLowerCase().replace(/ /g, "-")
+  const slug= slugify(title, { lower: true, remove: /[*+~.()'"!:@]/g }) 
   const status= "draft"
   const authorId= user.id
   const content= ""

@@ -50,6 +50,9 @@ export default {
       back_button: "Retour aux rapports",
       download: "Télécharger le rapport",
     },
-  
+    wineries: {
+      title: "Vineries",
+      back_button: "Retour aux vineries",
+    },
   } as const
   
