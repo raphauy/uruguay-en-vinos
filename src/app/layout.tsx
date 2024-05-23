@@ -11,6 +11,7 @@ import './globals.css'
 import Logged from '@/components/header/logged'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: 'Uruguay en Vinos',
@@ -50,6 +51,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                   }
                   <div className="flex flex-col items-center flex-1">
                       {children}
+                      <Analytics />
                     <Toaster />
                   </div>
                   
