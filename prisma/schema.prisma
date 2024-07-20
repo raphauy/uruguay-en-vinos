@@ -124,3 +124,23 @@ model Wine {
   price         String    @default("")
   image         String?   @default("/wine-placeholder.jpg")
 }
+
+enum BookStatus {
+  PENDING
+  DELIVERED
+  IN_WAREHOUSE
+}
+
+model Book {
+  id            String    @id @default(cuid())
+  number        Int                                      // gennext: show.column
+  email         String                                   // gennext: show.column
+  name          String                                   // gennext: show.column
+  address       String                                   // gennext: show.column
+  city          String                                   // gennext: show.column
+  phone         String                                   // gennext: show.column
+  paymentMethod String                                   // gennext: show.column
+  date          DateTime                                 // gennext: show.column
+  quantity      Int                                      // gennext: show.column
+  status        BookStatus @default(PENDING)             // gennext: show.column
+}

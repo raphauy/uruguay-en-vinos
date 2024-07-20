@@ -2,7 +2,7 @@
 
 import Logged from "@/components/header/logged";
 import { cn } from "@/lib/utils";
-import { BookA, LayoutDashboard, MessageCircle, Newspaper, Settings, Shapes, Tag, User, Wine } from "lucide-react";
+import { Book, BookA, BookOpen, LayoutDashboard, MessageCircle, Newspaper, Settings, Shapes, Tag, User, Wine } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -45,6 +45,11 @@ const data= [
     href: "/admin/wines",
     icon: Wine,
     text: "Wines"
+  },
+  {
+    href: "/admin/books",
+    icon: BookOpen,
+    text: "Books"
   },
   {
     href: "divider", icon: User

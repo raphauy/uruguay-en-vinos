@@ -5,3 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function completeWithZeros(number: number): string {
+  return number.toString().padStart(7, "0")
+}
