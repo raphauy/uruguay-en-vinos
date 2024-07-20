@@ -6,7 +6,7 @@ import { getBooksDAO } from "@/services/book-services"
 export default async function BookPage() {
   
   const data= await getBooksDAO()
-  const cities= data.map(book => book.city)
+  const cities= data.map(book => book.city.trim())
   const uniqueCities= Array.from(new Set(cities))
 
   return (
