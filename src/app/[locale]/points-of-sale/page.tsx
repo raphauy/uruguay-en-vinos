@@ -1,10 +1,9 @@
-import { getCurrentLocale, getScopedI18n } from "@/locales/server"
-import Link from "next/link"
-import ReportCard from "./report-card"
 import ContentViewer from "@/app/admin/articles/[articleId]/preview/content-viewer"
-import { getArticlesDAOBySlug } from "@/services/article-services"
 import { Button } from "@/components/ui/button"
+import { getCurrentLocale, getScopedI18n } from "@/locales/server"
+import { getArticlesDAOBySlug } from "@/services/article-services"
 import { CornerLeftUp } from "lucide-react"
+import Link from "next/link"
 
 
 export default async function WineriesPage() {
@@ -25,7 +24,6 @@ export default async function WineriesPage() {
     return (
         <div className="flex w-full justify-center">
             <div className="flex flex-col justify-center max-w-6xl justify-self-center items-center p-1 md:p-4 xl:p-8  space-y-2">
-                <ReportCard article={article} h1/>
 
                 <div className="w-full">
                     <ContentViewer content={article.content} />            
