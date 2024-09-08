@@ -58,11 +58,25 @@ export default async function Home() {
         </Link>
       </div>
 
+      {/** Pos */}
+      <div className="grid md:grid-cols-[2fr_1.4fr] lg:grid-cols-[2fr_1.4fr] max-w-3xl gap-3 lg:gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
+        <Image src="/libro_portada.jpg" width={1600} height={1000} alt={t("pos_title")}/>
+        <div className="flex flex-col justify-between items-center md:items-start">
+          <div>
+            <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("pos_title")}</p>
+            <p>{t("pos_description")}</p>
+          </div>
+
+          <Link href="/points-of-sale">
+            <Button className="uppercase rounded-3xl mt-3">{t("pos_call_to_action")}</Button>
+          </Link>
+        </div>
+      </div>
+
+
+
       {/** Reports */}
-      <div className="grid md:grid-cols-[2fr_1fr] max-w-3xl gap-8  my-10 mx-4 md:mx-10 text-center md:text-left">
-        <Link href="/reports">
-          <Image src="/informes.png" width={1600} height={1000} alt={t("report_title")} />
-        </Link>
+      <div className="grid md:grid-cols-[1.4fr_2fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
         <div className="flex flex-col justify-between items-center md:items-start">
           <div>
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("report_title")}</p>
@@ -72,9 +86,12 @@ export default async function Home() {
           <Link href="/reports">
             <Button className="w-32 uppercase rounded-3xl mt-3">{t("report_button")}</Button>
           </Link>
-
         </div>
+        <Link href="/reports">
+          <Image src="/informes.png" width={1600} height={1000} alt={t("report_title")} />
+        </Link>
       </div>
+
 
       {/** Suscribe */}
       <div className="grid md:grid-cols-[1fr_2.6fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10">
