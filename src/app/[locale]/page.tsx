@@ -60,7 +60,7 @@ export default async function Home() {
 
       {/** Pos */}
       <div className="grid md:grid-cols-[2fr_1.4fr] lg:grid-cols-[2fr_1.4fr] max-w-3xl gap-3 lg:gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
-        <Image src="/libro_portada.jpg" width={1600} height={1000} alt={t("pos_title")}/>
+        <Image src="/book_mockup.jpg" width={1600} height={1000} alt={t("pos_title")}/>
         <div className="flex flex-col justify-between items-center md:items-start">
           <div>
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("pos_title")}</p>
