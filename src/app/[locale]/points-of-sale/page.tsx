@@ -23,7 +23,7 @@ export default async function WineriesPage() {
 
     return (
         <div className="flex w-full justify-center">
-            <div className="flex flex-col justify-center max-w-6xl justify-self-center items-center p-1 md:p-4 xl:p-8  space-y-2">
+            <div className="flex flex-col justify-center max-w-6xl justify-self-center items-center p-1 md:p-4 xl:p-8  space-y-2 w-full">
 
                 <div className="w-full">
                     <ContentViewer content={article.content} />            

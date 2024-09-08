@@ -22,7 +22,7 @@ export default function ContentViewer({ content }: Props) {
     }
 
     return (
-        <div className="flex h-full border rounded-lg justify-center p-1 md:p-4 xl:p-8">
+        <div className="flex h-full border rounded-lg justify-center p-1 md:p-4 xl:p-8 w-full">
             <NovelEditor
                 className="h-full w-full"
                 defaultValue={JSON.parse(content)}

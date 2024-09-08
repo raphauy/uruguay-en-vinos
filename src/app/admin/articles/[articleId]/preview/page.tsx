@@ -20,7 +20,7 @@ export default async function ArticlePreview({ params }: Props) {
     const files = article.files || []
 
     return (
-        <div className="flex flex-col items-center p-1 md:p-4 xl:p-8  space-y-2">
+        <div className="flex flex-col items-center p-1 md:p-4 xl:p-8  space-y-2 w-full">
             <ReportCard article={article} />
 
             <ContentViewer content={article.content} />            
