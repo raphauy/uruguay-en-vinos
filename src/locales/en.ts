@@ -6,7 +6,7 @@ export default {
     desc: "Uruguay in wines is an independent communication project, created by Gabi Zimmer, whose main goal is to spread de word about Uruguayan viticulture and wines through content and phygital educational experiences.",
     book: "Book",
     book_actual: "Up to date and personal, Uruguay in wines is a tribute to the roots, wine traditions, and Uruguayan gastronomic culture. It narrates the history from the introduction of the first vines to the Uruguayan territory to the latest developments in Uruguayan wine. This book is a journey of discovery and passion for the world of wine.",
-    button_lo_quiero: "Buy",
+    button_lo_quiero: "Buy online",
     discover_title: "Uruguayan Wines",
     discover_text: "This section offers an extensive database of Uruguayan wines complete with Gabi`s professional tasting notes.",
     discover_button: "Discover",

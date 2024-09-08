@@ -6,7 +6,7 @@ export default {
     desc: "Uruguay en vinos es un proyecto de comunicación independiente, creado por Gabi Zimmer, cuyo objetivo principal es difundir la vitivinicultura y los vinos uruguayos a través de contenido y experiencias educativas físicas y digitales.",
     book: "Libro",
     book_actual: "Actual y personal, Uruguay en vinos es un homenaje a las raíces, tradiciones del vino y cultura gastronómica uruguaya. Relata la historia desde la introducción de las primeras cepas al territorio uruguayo hasta lo nuevo del vino en Uruguay. Este libro es un viaje de descubrimiento y pasión por el mundo del vino.",
-    button_lo_quiero: "Comprar",
+    button_lo_quiero: "Comprar online",
     discover_title: "Vinos Uruguayos",
     discover_text: "Este sitio ofrece una extensa base de datos de vinos uruguayos completa con las notas de cata profesionales de Gabi.",
     discover_button: "Descubrir",

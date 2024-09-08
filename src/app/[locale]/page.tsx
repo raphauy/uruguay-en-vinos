@@ -35,32 +35,13 @@ export default async function Home() {
           </div>
 
           <Link href="https://libro.uruguayenvinos.com">
-            <Button className="w-32 uppercase rounded-3xl mt-3">{t("button_lo_quiero")}</Button>
+            <Button className="uppercase rounded-3xl mt-3">{t("button_lo_quiero")}</Button>
           </Link>
         </div>
-      </div>
-
-      {/** Discover */}
-      <div className="grid md:grid-cols-[1.4fr_2fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
-        <div className="flex flex-col justify-between items-center md:items-start">
-          <div>
-            <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("discover_title")}</p>
-            <p>{t("discover_text")}</p>
-          </div>
-
-          <Link href="/wines">
-            <Button className="w-32 uppercase rounded-3xl mt-3">{t("discover_button")}</Button>
-          </Link>
-
-        </div>
-        <Link href="/wines">
-          <Image src="/descubrir.png" width={662} height={300} alt={t("discover_title")} />
-        </Link>
       </div>
 
       {/** Pos */}
-      <div className="grid md:grid-cols-[2fr_1.4fr] lg:grid-cols-[2fr_1.4fr] max-w-3xl gap-3 lg:gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
-        <Image src="/book_mockup.jpg" width={1600} height={1000} alt={t("pos_title")}/>
+      <div className="grid md:grid-cols-[1.4fr_2fr] lg:grid-cols-[1.4fr_2fr] max-w-3xl gap-3 lg:gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
         <div className="flex flex-col justify-between items-center md:items-start">
           <div>
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("pos_title")}</p>
@@ -71,9 +52,25 @@ export default async function Home() {
             <Button className="uppercase rounded-3xl mt-3">{t("pos_call_to_action")}</Button>
           </Link>
         </div>
+        <Image src="/book_mockup.jpg" width={1600} height={1000} alt={t("pos_title")}/>
       </div>
 
+      {/** Discover */}
+      <div className="grid md:grid-cols-[2fr_1.4fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
+        <Link href="/wines">
+          <Image src="/descubrir.png" width={662} height={300} alt={t("discover_title")} />
+        </Link>
+        <div className="flex flex-col justify-between items-center md:items-start">
+          <div>
+            <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("discover_title")}</p>
+            <p>{t("discover_text")}</p>
+          </div>
 
+          <Link href="/wines">
+            <Button className="w-32 uppercase rounded-3xl mt-3">{t("discover_button")}</Button>
+          </Link>
+        </div>
+      </div>
 
       {/** Reports */}
       <div className="grid md:grid-cols-[1.4fr_2fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
@@ -94,25 +91,20 @@ export default async function Home() {
 
 
       {/** Suscribe */}
-      <div className="grid md:grid-cols-[1fr_2.6fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10">
+      <div className="grid md:grid-cols-[2.6fr_1fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10">
+        <Link href="/wineries">
+          <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
+        </Link>
         <div className="flex flex-col justify-between items-center md:items-start">
           <div className="text-center md:text-left">
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("suscribe_title")}</p>
             <p>{t("suscribe_text1")}</p>
-            {/* <p>{t("suscribe_text2")}</p>
-            <p>{t("suscribe_text3")}</p>
-            <p>{t("suscribe_text4")}</p>
-            <p>{t("suscribe_text5")}</p> */}
           </div>
 
           <Link href="/wineries">
             <Button className="w-32 uppercase rounded-3xl mt-3">{t("suscribe_button")}</Button>
           </Link>
-
         </div>
-        <Link href="/wineries">
-          <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
-        </Link>
       </div>
 
 
