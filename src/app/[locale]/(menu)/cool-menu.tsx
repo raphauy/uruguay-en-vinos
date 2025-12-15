@@ -68,21 +68,10 @@ export function CoolMenu({ toggle }: Props) {
         <Link className="text-lg font-bold" href={`/wines`} onClick={toggle}>
           {t('wines')}
         </Link>
-        <Link className="text-lg font-bold" href="/reports" onClick={toggle}>
-          {t('reports')}
-        </Link>
       </div>
       <div className="flex justify-between items-center">
         <div className="flex gap-2">
-          <Link className="text-lg" href="#">
-            <Instagram className="h-6 w-6" />
-          </Link>
-          <Link className="text-lg" href="#">
-            <Facebook className="h-6 w-6" />
-          </Link>
-          <Link className="text-lg" href="#">
-            <Linkedin className="h-6 w-6" />
-          </Link>
+        <Link href="https://www.instagram.com/uruguayenvinos" target="_blank"><Instagram size={32}  /></Link>
         </div>
         <ThemeToggle />
       </div>

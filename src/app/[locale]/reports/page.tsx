@@ -8,7 +8,7 @@ export default async function ReportsPage() {
     const informesCategoryIdEs= process.env.INFORMES_CATEGORY_ID_ES
     const informesCategoryIdEn= process.env.INFORMES_CATEGORY_ID_EN
 
-    const currentLanguage = getCurrentLocale()
+    const currentLanguage = await getCurrentLocale()
     console.log("currentLanguage is: ", currentLanguage) 
 
     let articles= null

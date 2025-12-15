@@ -72,29 +72,8 @@ export default async function Home() {
         </div>
       </div>
 
-      {/** Reports */}
-      <div className="grid md:grid-cols-[1.4fr_2fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
-        <div className="flex flex-col justify-between items-center md:items-start">
-          <div>
-            <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("report_title")}</p>
-            <p>{t("report_text")}</p>
-          </div>
-
-          <Link href="/reports">
-            <Button className="w-32 uppercase rounded-3xl mt-3">{t("report_button")}</Button>
-          </Link>
-        </div>
-        <Link href="/reports">
-          <Image src="/informes.png" width={1600} height={1000} alt={t("report_title")} />
-        </Link>
-      </div>
-
-
       {/** Suscribe */}
-      <div className="grid md:grid-cols-[2.6fr_1fr] max-w-3xl gap-8 my-10 mx-4 md:mx-10">
-        <Link href="/wineries">
-          <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
-        </Link>
+      <div className="grid md:grid-cols-[1.4fr_2fr] lg:grid-cols-[1.4fr_2fr] max-w-3xl gap-3 lg:gap-8 my-10 mx-4 md:mx-10 text-center md:text-left">
         <div className="flex flex-col justify-between items-center md:items-start">
           <div className="text-center md:text-left">
             <p className={cn(jostMedium.className, "text-2xl uppercase mb-3")}>{t("suscribe_title")}</p>
@@ -105,6 +84,9 @@ export default async function Home() {
             <Button className="w-32 uppercase rounded-3xl mt-3">{t("suscribe_button")}</Button>
           </Link>
         </div>
+        <Link href="/wineries">
+          <Image src="/uvas_blancas.jpg" width={662} height={300} alt={t("suscribe_title")} />
+        </Link>
       </div>
 
 

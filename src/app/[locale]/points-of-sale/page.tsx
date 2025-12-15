@@ -7,7 +7,7 @@ import Link from "next/link"
 
 
 export default async function WineriesPage() {
-    const currentLanguage = getCurrentLocale()
+    const currentLanguage = await getCurrentLocale()
     console.log("currentLanguage is: ", currentLanguage) 
 
     const article = await getArticlesDAOBySlug("puntos-de-venta")

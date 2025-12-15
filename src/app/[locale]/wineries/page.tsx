@@ -6,7 +6,7 @@ import { getCategoryDAOByName } from "@/services/category-services"
 
 
 export default async function WineriesPage() {
-    const currentLanguage = getCurrentLocale()
+    const currentLanguage = await getCurrentLocale()
     console.log("currentLanguage is: ", currentLanguage) 
 
     let articles= null

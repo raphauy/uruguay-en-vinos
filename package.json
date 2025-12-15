@@ -2,6 +2,12 @@
   "name": "nextjs-starter-rc",
   "version": "0.1.0",
   "private": true,
+  "pnpm": {
+    "overrides": {
+      "@tiptap/pm": "2.0.4",
+      "prosemirror-view": "1.31.7"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "turbo": "next dev --turbo",
@@ -47,7 +53,7 @@
     "geist": "^1.0.1",
     "inquirer": "^9.2.12",
     "lucide-react": "^0.292.0",
-    "next": "^14.2.3",
+    "next": "^14.2.35",
     "next-auth": "^4.24.4",
     "next-cloudinary": "^5.7.0",
     "next-international": "^1.1.4",
