@@ -1,7 +1,6 @@
 # Agregado por RC
 .env
 bun.lockb
-pnpm-lock.yaml
 
 # dependencies
 /node_modules
